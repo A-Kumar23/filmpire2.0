@@ -17,7 +17,7 @@ const useStyles = makeStyles()(
         textDecoration: 'none',
        },
        genreImage:{
-        filter: theme.palette.mode === 'dark' ? 'dark' : 'invert(1)',
+        filter: theme.palette.mode === 'light' ? 'light' : 'invert(1)',
        }
     };
   });

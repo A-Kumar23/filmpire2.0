@@ -1,15 +1,19 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 // import { createTheme, ThemeProvider } from '@mui/material/styles';
 import App from "./App";
+import store from "./App/store"
 
 // const theme = createTheme();
-
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
     // <ThemeProvider>
-    <BrowserRouter>
-    <App/> 
-    </BrowserRouter>
+    <Provider store={store}>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </Provider>
     // </ThemeProvider>
-    , document.getElementById("root"));
+   );

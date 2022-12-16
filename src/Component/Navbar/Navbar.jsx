@@ -1,11 +1,12 @@
 import { AppBar, Avatar, Button, IconButton, Toolbar, useMediaQuery } from '@mui/material'
 import React, { useState } from 'react'
-import useStyles from './NavbarStyle'
+import useStyles from './NavbarStyle.ts'
 import MenuIcon from '@mui/icons-material/Menu';
 import { AccountCircle, Anchor, Brightness4, Brightness7 } from '@mui/icons-material';
 import { useTheme } from '@mui/material/styles';
 import { Drawer } from '@mui/material';
 import Sidebar from '../Sidebar/Sidebar';
+import Search from '../Search/Search';
 const Navbar = () => {
 
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -35,7 +36,7 @@ const Navbar = () => {
           >
             {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
-          {!isMobile && 'Search...'}
+          {!isMobile && <Search/>}
           <div>
             {!isAuthenticated ? (
               <Button>
@@ -59,7 +60,7 @@ const Navbar = () => {
               </Button>
             )}
           </div>
-          {isMobile && 'Search...'}
+          {isMobile && <Search/>}
         </Toolbar>
       </AppBar>
       <div>

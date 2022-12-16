@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Actors from './Component/Actors/Actors'
 import MovieInformation from './Component/MovieInformation/MovieInformation'
-import Movie from './Component/Movies/Movie'
+import Movie from './Component/Movies/Movies'
 import Profile from './Component/Profile/Profile'
 
 const Router = () => {
