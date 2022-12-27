@@ -12,15 +12,13 @@ const useStyles = makeStyles() (
         },
         input:{
             // color: theme.palette.mode === 'light' && 'black',
-            // filter: theme.palette.mode === 'light' && 'invert(1)',
-            
             [theme.breakpoints.down('sm')]: {
                marginTop: '-10px',
                marginBottom: '10px',
               
             },
-            filter: theme.palette.mode === 'light' ? 'light' : 'invert(1)',
-            color: theme.palette.mode === 'light' ? 'light' : 'black',
+            filter: theme.palette.mode === 'dark' ? 'dark' : 'invert(1)',
+            color: theme.palette.mode === 'light' ? 'light' : 'white',
         }
        }
         

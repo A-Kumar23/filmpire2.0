@@ -7,8 +7,8 @@ import { selectGenreOrCategory } from '../../features/currentGenreOrCatagory';
 
 const Movies = () => {
   const [page, setPage] = useState(1)
-  const  {genreIdOrCategoryName}  = useSelector((state) => state.currentGenreOrCatagory); 
-  const { data, error, isFetching } = useGetMovieQuery({genreIdOrCategoryName, page});
+  const  {genreIdOrCategoryName, searchQuery}  = useSelector((state) => state.currentGenreOrCatagory); 
+  const { data, error, isFetching } = useGetMovieQuery({genreIdOrCategoryName, page, searchQuery});
 
   if(isFetching) {
     return (

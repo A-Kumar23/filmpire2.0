@@ -37,7 +37,7 @@ const Navbar = () => {
             {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
           {!isMobile && <Search/>}
-          <div>
+          {/* <div>
             {!isAuthenticated ? (
               <Button>
                 Login &nbsp; <AccountCircle />
@@ -59,7 +59,7 @@ const Navbar = () => {
                 </Avatar>
               </Button>
             )}
-          </div>
+          </div> */}
           {isMobile && <Search/>}
         </Toolbar>
       </AppBar>
