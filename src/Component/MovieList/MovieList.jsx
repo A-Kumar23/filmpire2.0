@@ -3,15 +3,14 @@ import React from 'react'
 import Movie from "../Movie/Movie"
 import useStyles from './MovieListStyle.ts'
 
-const MovieList = ( {movies} ) => {
+const MovieList = ( { movies, numberOfMovie } ) => {
     const {classes} = useStyles();
-    console.log(movies.results);
   return (
     <Grid container className={classes.moviesContainer}>
             {
-              movies.results.map((movie, i) => (
+              movies.results.slice(0, numberOfMovie).map((movie, i) => (
                 <Movie key={i} movie={movie} i={i} /> 
-              ))
+              )).slice(0,18)
             }
     </Grid>
   )
