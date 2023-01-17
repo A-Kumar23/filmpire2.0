@@ -2,7 +2,6 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 const tmbdApiKey = process.env.REACT_APP_TMBD_KEY;
 
-
 export const tmbdAPI = createApi(
     {
         reducerPath: 'tmbdAPI',
@@ -52,6 +51,17 @@ export const tmbdAPI = createApi(
                 // Get similar Movie
                 getSimilar: builder.query({
                     query: (id) => `movie/${id}/similar?api_key=${tmbdApiKey}` 
+                }),
+
+                // Get person Details
+
+                getPersonDetails: builder.query({
+                    query: (id) => `person/${id}?api_key=${tmbdApiKey}`
+                }),
+
+                //Get movie by actors id
+                getMovieByActorId: builder.query({
+                    query: (id, page) => `/discover/movie?with_cast=${id}&page=${page}&api_key=${tmbdApiKey}`, 
                 })
             }
         )
@@ -64,4 +74,6 @@ export const {
     useGetMovieByIdQuery,
     useGetRecommendationQuery,
     useGetSimilarQuery,
+    useGetPersonDetailsQuery,
+    useGetMovieByActorIdQuery,
 } = tmbdAPI;

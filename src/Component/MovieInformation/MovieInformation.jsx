@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import useStyles from './MovieInformationStyle.ts';
 import genreIcons from "../../assets/genres";
 import { useDispatch, useSelector } from 'react-redux';
 import { selectGenreOrCategory } from '../../features/currentGenreOrCatagory';
-import { useGetMovieByIdQuery, useGetRecommendationQuery } from '../../service/TMDB';
+import { useGetMovieByIdQuery, useGetRecommendationQuery, useGetPersonDetailsQuery } from '../../service/TMDB';
 import MovieIcon from '@mui/icons-material/Movie';
-import { Box, Button, ButtonGroup, CircularProgress, Grid, Rating, Typography } from '@mui/material';
+import { Box, Button, ButtonGroup, CircularProgress, Grid, Modal, Rating, Typography } from '@mui/material';
 import { Language, Theaters } from '@mui/icons-material';
 import MovieList from '../MovieList/MovieList';
 
@@ -17,7 +17,7 @@ const MovieInformation = () => {
   const { data, isFetching, error } = useGetMovieByIdQuery(id);
   const dispatch = useDispatch();
   const { data: recommendations, } = useGetRecommendationQuery(id);
-
+  const [open, setOpen] = useState(false)
   if (isFetching) {
     return (
       <Box display='flex' justifyContent='center'>
@@ -32,7 +32,7 @@ const MovieInformation = () => {
       <Link to='/'>Error Please Go Back </Link>
     </Box>
     )
-    
+
   }
   return (
     <Grid container className={classes.containerSpaceAround}>
@@ -90,7 +90,7 @@ const MovieInformation = () => {
           {
             data && data.credits.cast.map((character, i) => (
               character.profile_path && (
-                <Grid key={i} item xs={4} md={2} style={{ textDecoration: 'none' }} underline="hover" component={Link} to='/'>
+                <Grid key={i} item xs={4} md={2} style={{ textDecoration: 'none' }} underline="hover" component={Link} to={`/actor/${character.id}`}>
                   <img className={classes.castImage}
                     src={`https://image.tmdb.org/t/p/w500/${character.profile_path}`}
                     alt={character.name}
@@ -107,7 +107,7 @@ const MovieInformation = () => {
               <ButtonGroup size='medium' variant='outlined'>
                 <Button target='blank' rel='noopener noreferrer' href={data?.homepage} endIcon={<Language />}>WebSite</Button>
                 <Button target='blank' rel='noopener noreferrer' href={`https://www.imdb.com/title/${data?.imdb_id}`} endIcon={<MovieIcon />}>IMDB</Button>
-                <Button onClick={() => ('')} href="#" endIcon={<Theaters />}>Trailers</Button>
+                <Button onClick={() => setOpen(true)} href="#" endIcon={<Theaters />}>Trailers</Button>
               </ButtonGroup>
             </Grid>
           </div>
@@ -120,6 +120,28 @@ const MovieInformation = () => {
           recommendations ? <MovieList movies={recommendations} numberOfMovie={12} /> : <Box>Sorry, Nothing is Found</Box>
         }
       </Box>
+     
+      <Modal
+        closeAfterTransition
+        className={classes.modal}
+        open={open}
+        onClose = { ( ) => setOpen(false) }
+      >
+        {
+          data?.videos.results.length > 0 && (
+            <>
+            <iframe
+              autoPlay
+              className={classes.video}
+              frameBorderSize='0'
+              title='Trailers'
+              src={`https://www.youtube.com/embed/${data?.videos.results[0].key}`}
+              allow= 'autoplay'
+            />
+            </>
+          )
+        }
+      </Modal>
     </Grid>
   )
 }
