@@ -1,8 +1,8 @@
-import { AppBar, Avatar, Button, IconButton, Toolbar, useMediaQuery } from '@mui/material'
+import { AppBar, IconButton, Toolbar, useMediaQuery } from '@mui/material'
 import React, { useState } from 'react'
 import useStyles from './NavbarStyle.ts'
 import MenuIcon from '@mui/icons-material/Menu';
-import { AccountCircle, Anchor, Brightness4, Brightness7 } from '@mui/icons-material';
+import { Brightness4, Brightness7 } from '@mui/icons-material';
 import { useTheme } from '@mui/material/styles';
 import { Drawer } from '@mui/material';
 import Sidebar from '../Sidebar/Sidebar';
@@ -13,7 +13,7 @@ const Navbar = () => {
   const { classes } = useStyles();
   const isMobile = useMediaQuery('(max-width:600px)')
   const theme = useTheme();
-  const isAuthenticated = true;
+  // const isAuthenticated = true;
   return (
     <div>
       <AppBar position='fixed'>

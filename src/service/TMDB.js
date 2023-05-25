@@ -17,24 +17,25 @@ export const tmbdAPI = createApi(
                 ),
                 // Get Movie by Type
                 getMovie: builder.query({
-                    query: ({ genreIdOrCategoryName, page, searchQuery}) => { 
+                    query: ({ genreIdOrCategoryName, page, searchQuery }) => {
 
                         // Get Movie by searchQuery
-                        if(searchQuery) {
+                        if (searchQuery) {
                             return `search/movie?query=${searchQuery}&page=${page}&api_key=${tmbdApiKey}`;
                         }
 
                         // Get Movie by category name
-                        if(genreIdOrCategoryName && typeof genreIdOrCategoryName === 'string') {
+                        if (genreIdOrCategoryName && typeof genreIdOrCategoryName === 'string') {
                             return `movie/${genreIdOrCategoryName}?page=${page}&api_key=${tmbdApiKey}`;
                         }
                         //  Get Movie by genre name
-                       
-                        if(genreIdOrCategoryName && typeof genreIdOrCategoryName === 'number') {
+
+                        if (genreIdOrCategoryName && typeof genreIdOrCategoryName === 'number') {
                             return `discover/movie?with_genres=${genreIdOrCategoryName}&page=${page}&api_key=${tmbdApiKey}`;
                         }
                         // Get Popular Movie 
-                        return `movie/popular?page=${page}&api_key=${tmbdApiKey}`},
+                        return `movie/popular?page=${page}&api_key=${tmbdApiKey}`
+                    },
                 }),
                 // Get Movie
 
@@ -45,12 +46,12 @@ export const tmbdAPI = createApi(
                 // Get Recommendation Movie
                 getRecommendation: builder.query({
                     query: (id) => `movie/${id}/recommendations?api_key=${tmbdApiKey}`
-                    
+
                 }),
 
                 // Get similar Movie
                 getSimilar: builder.query({
-                    query: (id) => `movie/${id}/similar?api_key=${tmbdApiKey}` 
+                    query: (id) => `movie/${id}/similar?api_key=${tmbdApiKey}`
                 }),
 
                 // Get person Details
@@ -61,7 +62,7 @@ export const tmbdAPI = createApi(
 
                 //Get movie by actors id
                 getMovieByActorId: builder.query({
-                    query: (id, page) => `/discover/movie?with_cast=${id}&page=${page}&api_key=${tmbdApiKey}`, 
+                    query: (id, page) => `/discover/movie?with_cast=${id}&page=${page}&api_key=${tmbdApiKey}`,
                 })
             }
         )
