@@ -1,28 +1,21 @@
-import { makeStyles } from "tss-react/mui";
+import { makeStyles } from 'tss-react/mui';
 
-const useStyles = makeStyles() (
+const useStyles = makeStyles()(
     (theme) => {
-       return{
-        searchContainer: {
-            [theme.breakpoints.down('sm')]: {
-                display: 'flex',
-                justifyContent: 'center',
-                width: '100%',
-            }
-        },
-        input:{
-            // color: theme.palette.mode === 'light' && 'black',
-            [theme.breakpoints.down('sm')]: {
-               marginTop: '-10px',
-               marginBottom: '10px',
-              
+        return {
+            searchContainer: {
+                [theme.breakpoints.down('sm')]: {
+                    display: 'flex',
+                    justifyContent: 'center',
+                    width: '100%',
+                }
             },
-            filter: theme.palette.mode === 'dark' ? 'dark' : 'invert(1)',
-            color: theme.palette.mode === 'light' ? 'light' : 'white',
-        }
-       }
-        
-    }
-);
+            input: {
+                color: theme.palette.mode === 'light' ? 'dark' : 'white',
+                filter: theme.palette.mode === 'light' ? 'dark' : 'white',
+                // color: theme.palette.mode === 'light' && 'black',
+            }
+        };
+    });
 
 export default useStyles;

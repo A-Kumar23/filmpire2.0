@@ -1,19 +1,22 @@
-import { AppBar, IconButton, Toolbar, useMediaQuery } from '@mui/material'
-import React, { useState } from 'react'
+import { AppBar, Avatar, Button, IconButton, Toolbar, useMediaQuery } from '@mui/material'
+import React, { useContext, useState } from 'react'
 import useStyles from './NavbarStyle.ts'
+import { ColorModeContext } from '../../utils/ToggleColorMode.jsx';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Brightness4, Brightness7 } from '@mui/icons-material';
+import { AccountCircle, Brightness4, Brightness7 } from '@mui/icons-material';
 import { useTheme } from '@mui/material/styles';
 import { Drawer } from '@mui/material';
 import Sidebar from '../Sidebar/Sidebar';
 import Search from '../Search/Search';
+import { fetchToken } from '../../utils/index.js';
 const Navbar = () => {
 
   const [mobileOpen, setMobileOpen] = useState(false);
   const { classes } = useStyles();
   const isMobile = useMediaQuery('(max-width:600px)')
   const theme = useTheme();
-  // const isAuthenticated = true;
+  const colorMode = useContext(ColorModeContext)
+  const isAuthenticated = true;
   return (
     <div>
       <AppBar position='fixed'>
@@ -32,14 +35,14 @@ const Navbar = () => {
           <IconButton
             color='inherit'
             sx={{ ml: 1 }}
-            onClick={() => { }}
+            onClick={colorMode.toggleColorMode}
           >
             {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
           {!isMobile && <Search/>}
-          {/* <div>
+          <div>
             {!isAuthenticated ? (
-              <Button>
+              <Button onClick={fetchToken}>
                 Login &nbsp; <AccountCircle />
               </Button>
             ) : (
@@ -59,7 +62,7 @@ const Navbar = () => {
                 </Avatar>
               </Button>
             )}
-          </div> */}
+          </div>
           {isMobile && <Search/>}
         </Toolbar>
       </AppBar>

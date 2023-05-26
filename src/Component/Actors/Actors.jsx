@@ -2,10 +2,9 @@ import { ArrowBack } from '@mui/icons-material';
 import { Button, CircularProgress, Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useState } from 'react'
-import { Link, useParams,  } from 'react-router-dom';
+import {  useParams,  } from 'react-router-dom';
 import { useGetPersonDetailsQuery, useGetMovieByActorIdQuery } from '../../service/TMDB'
 import MovieList from '../MovieList/MovieList';
-import Pagination from '../Pagination/Pagination';
 import useStyles from './ActorsStyle.ts';
 
 const Actors = () => {
@@ -17,8 +16,8 @@ const Actors = () => {
   const [page, setPage] = useState(1)
   const { data: movies} = useGetMovieByActorIdQuery(id, page)
   const date = new Date(data?.birthday).toDateString();
-  console.log(data);
-  console.log(movies, 'hello');
+  
+  console.log(setPage);
   if (isFetching) {
     return (
       <Box display='flex' justifyContent='center'>
